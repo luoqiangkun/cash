@@ -1,11 +1,12 @@
-const SITEURL = "https://shop.xunyoutest.com";
-const WAPSITEURL = "https://shop.xunyoutest.com/wap";
-const APIURL = "https://shop.xunyoutest.com/catering.php";
+
+const SITEURL = SiteUrl;
+const WAPSITEURL = WapSiteUrl;
+const APIURL = ApiUrl + '/catering.php';
+const ACCOUNTURL = ApiUrl + '/account.php';
 const VERSION = 'v1'; 
 const SYSURL = {
 		'store/info' :APIURL + '?ctl=Store_Base&met=info&typ=json',
 		'store/config/info' : APIURL + '?ctl=Store_Config&met=info&typ=json',
-
 		'goods/lists' :APIURL + '?ctl=Goods_Base&met=lists&typ=json',
 		'goods/add'  :APIURL + '?ctl=Goods_Base&met=save&typ=json',
 		'goods/edit' :APIURL + '?ctl=Goods_Base&met=save&typ=json',
@@ -16,7 +17,6 @@ const SYSURL = {
 		'category/delete' : APIURL + '?ctl=Goods_Category&met=remove&typ=json',
 		'order/lists' : APIURL + '?ctl=Order_Base&met=lists&typ=json',
 		'order/detail' : APIURL + '?ctl=Order_Base&met=detail&typ=json',
-
 		'order/add' : APIURL + '?ctl=Order_Base&met=addOrder&typ=json',
 		'order/add_item' : APIURL + '?ctl=Order_Base&met=addItem&typ=json',
 		'order/delete_item' : APIURL + '?ctl=Order_Base&met=removeItem&typ=json',
@@ -47,28 +47,21 @@ const SYSURL = {
 		'table/type/delete' : APIURL + '?ctl=Table_Type&met=remove&typ=json',
 
 		'table/action/add' : APIURL + '?ctl=Table_Action&met=add&typ=json',
-		
 		'waiter/lists' :APIURL + '?ctl=Store_Waiter&met=lists&typ=json',
-		
 		'info':APIURL + '?ctl=Index&met=info&typ=json',
-		// 'login':'https://shop.xunyoutest.com/account.php?ctl=Login&met=doLogin&typ=json',
 		'login':APIURL +'?ctl=Login&met=login&typ=json',
 		'logout':APIURL + '?ctl=Login&met=logout&typ=json',
 		'register': APIURL + '?ctl=Login&met=register&typ=json',
 		'queue/lists' : APIURL + '?ctl=Queue&met=lists&typ=json',
 		'queue/add' : APIURL + '?ctl=Queue&met=add&typ=json',
 		'queue/edit' : APIURL + '?ctl=Queue&met=edit&typ=json',
-
 		'pay/pay' : APIURL + '?ctl=Pay&met=pay&typ=json',
 		'micropay' : APIURL + '?ctl=Pay&met=pay&typ=e',
-
 		'analytics/order' : APIURL + '?ctl=Analytics&met=getAnnualSales&typ=json',
 		'analytics/goods' : APIURL + '?ctl=Analytics&met=getGoodsSales&typ=json',
 		'analytics/table' : APIURL + '?ctl=Analytics&met=getTableData&typ=json',
-
 		'print/order' : APIURL + '?ctl=Print&met=printOrder&typ=json',
 		'print/queue' : APIURL + '?ctl=Print&met=printQueue&typ=json',
-
 		'notice/lists' : APIURL + '?ctl=Notice_Base&met=lists&typ=json',
 		'notice/read' : APIURL + '?ctl=Notice_Base&met=read&typ=json',
 		'notice/delete' : APIURL + '?ctl=Notice_Base&met=delete&typ=json',

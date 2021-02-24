@@ -41,6 +41,8 @@ import router from './router'
  Vue.prototype.$message = Message;
  import echarts from 'echarts'
  Vue.prototype.$echarts = echarts 
+//  Vue.use(Row)
+//  Vue.use(Col)
 import axios from 'axios'
 Vue.prototype.$axios = axios
 
@@ -48,6 +50,7 @@ import './permission' // permission control
 
 Vue.config.productionTip = false
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   store,

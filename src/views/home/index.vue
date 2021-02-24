@@ -192,8 +192,8 @@ body > .el-container {
 }
 .msg-drawer {
   padding:0 20px;
-  .msg-box {
+}
+.msg-box {
     padding:5px 0 10px;
   }
-}
 </style>

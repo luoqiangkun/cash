@@ -114,8 +114,6 @@ const actions = {
         commit('CLEAR_UID' )
         delLocalStorage('ukey');
 
-        store.dispatch('shop/clearStoreInfo')
-
         resolve(data);
       }).catch(error => {
         reject(error)
