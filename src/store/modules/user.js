@@ -57,6 +57,7 @@ const actions = {
           commit('SET_UID', uid )
 
           setLocalStorage('ukey',ukey,24 * 365 * 5 )
+          setLocalStorage('uid',uid,24 * 365 * 5 )
           
           resolve( res.data )
 
@@ -113,6 +114,7 @@ const actions = {
         commit('CLEAR_RID')
         commit('CLEAR_UID' )
         delLocalStorage('ukey');
+        delLocalStorage('uid');
 
         resolve(data);
       }).catch(error => {

@@ -31,14 +31,16 @@
             </div>
           </div>
           <div class="numbox">
-            <el-input-number v-model="item.order_item_quantity"  size="mini" @change="handleChange(item.order_item_id,$event)"  label="商品数量"></el-input-number>
+            <el-input-number v-model="item.order_item_quantity" :min="0" size="mini" @change="handleChange(item.order_item_id,$event)"  label="商品数量"></el-input-number>
             <a class="price">￥{{item.order_item_price}}</a>
 
           </div>
 
           <div class="grey detail">
             <span>{{item.item_spec}}</span>
-            <span v-if="item.order_item_attribute" v-for="(attribute,k) in item.order_item_attribute" :key="k">{{attribute.value}}</span>
+            <template v-if="item.order_item_attribute">
+              <span  v-for="(attribute,k) in item.order_item_attribute" :key="k">{{attribute.value}}</span>
+            </template>
           </div>
           <div class="orange activity" v-if="item.activity_id && item.activity_type_id === 2">
             <span>特价商品</span>
@@ -209,12 +211,21 @@ export default {
 
       if( val === 0 ){
         deleteOrderItem(params).then( res => {
-          this.setOrderData( res.data );
+          if( res.status === 200 ){
+            this.setOrderData( res.data );
+          } else {
+            this.$message.error(res.msg);
+          }
         })
         return;
       }
       changeItemQuantity(params).then( res => {
-        this.setOrderData( res.data );
+        if( res.status === 200 ){
+          this.setOrderData( res.data );
+        } else {
+          this.$message.error(res.msg);
+        }
+        
       });
     },
     handleTableState(){

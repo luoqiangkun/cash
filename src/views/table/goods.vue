@@ -42,7 +42,7 @@
       <template v-if="item.goods_attribute" v-for="(attribute,k) in item.goods_attribute">
         <span style="padding-left: 20px">{{attribute.name}}</span>
         <div style="margin-top: 20px; padding:0 20px;margin-bottom:30px">
-          <el-radio v-model="form.item_attribute[k]" @change="handleAttributeChange(attribute.name,value,k)" :label="value" border size="medium" :key="value" v-for="(value) in attribute.items">{{value}}</el-radio>
+          <el-radio v-model="attribute.name" @change="handleAttributeChange(attribute.name,value,k)" :label="value" border size="medium" :key="value" v-for="(value) in attribute.items">{{value}}</el-radio>
         </div>
       </template>
 
@@ -207,7 +207,7 @@ export default {
         add_type:'goods',
         items : [this.form]
       };
-      
+    
       addOrder(params).then( res=> {
         if( res.status === 200 ){
           this.fixOrderData( res.data );

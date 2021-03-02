@@ -8,8 +8,7 @@ const whiteList = ['/login'] // no redirect whitelist
 router.beforeEach(async(to, from, next) => {
   // determine whether the user has logged in
 
-  const ukey = getLocalStorage('ukey'); 
-
+const ukey = getLocalStorage('ukey'); 
 
   if (ukey) {
     if (to.path === '/login') {
