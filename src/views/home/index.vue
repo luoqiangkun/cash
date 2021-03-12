@@ -50,11 +50,11 @@ export default {
           title: "订单",
           router: "/order"
         },
-        {
-          img: require("../../assets/images/外卖@2x.png"),
-          title: "外卖",
-          router: "/takeout"
-        },
+        // {
+        //   img: require("../../assets/images/外卖@2x.png"),
+        //   title: "外卖",
+        //   router: "/takeout"
+        // },
         {
           img: require("../../assets/images/报表中心@2x.png"),
           title: "报表",

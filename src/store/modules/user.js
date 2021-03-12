@@ -1,4 +1,4 @@
-import { setLocalStorage,getLocalStorage,delLocalStorage} from '@/utils/storage'
+import { setLocalStorage,delLocalStorage} from '@/utils/storage'
 import { login,logout,getInfo } from '@/api/user'
 import store from '@/store'
 
