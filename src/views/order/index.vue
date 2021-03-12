@@ -217,7 +217,8 @@ export default {
         order_starttime:this.order_starttime,
         order_endtime:this.order_endtime,
         rows:10,
-        page:1
+        page:1,
+        from:'store'
       };
       Object.assign(params, data);
 
