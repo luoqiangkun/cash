@@ -22,7 +22,7 @@
     <ul class="mealContent">
       <li v-for="(item,i) in meal.items" :key="item.goods_id" @click="handleMeal(i)">
         <div class="mealName">{{item.goods_name}}</div>
-        <div class="mealPrice" v-if="item.goods_spec && item.goods_spec.length >0 ">选择规格</div>
+        <div class="mealPrice" v-if="(item.goods_spec && item.goods_spec.length>0)||(item.goods_attribute && item.goods_attribute.length > 0) ">选择规格</div>
         <div class="mealPrice" v-else>￥{{item.goods_price}}/份</div>
       </li>
     </ul>
@@ -34,11 +34,13 @@
       width="450px"
       custom-class="dialog-spec"
     >
-      <span style="padding-left: 20px">规格</span>
-      <div style="margin-top: 20px; padding:0 20px;margin-bottom:30px">
-        <el-radio v-model="form.item_id" @change="form.item_price = item.item_price" :label="item.item_id" border size="medium" :key="item.item_id" v-for="(item,i) in item.items">{{item.spec_name}}</el-radio>
-      </div>
-      
+      <template v-if="item.goods_spec && item.goods_spec.length > 0">
+        <span style="padding-left: 20px">规格</span>
+        <div style="margin-top: 20px; padding:0 20px;margin-bottom:30px">
+          <el-radio v-model="form.item_id" @change="form.item_price = item.item_price" :label="item.item_id" border size="medium" :key="item.item_id" v-for="(item,i) in item.items">{{item.spec_name}}</el-radio>
+        </div>
+      </template>
+     
       <template v-if="item.goods_attribute" v-for="(attribute,k) in item.goods_attribute">
         <span style="padding-left: 20px">{{attribute.name}}</span>
         <div style="margin-top: 20px; padding:0 20px;margin-bottom:30px">
@@ -163,8 +165,8 @@ export default {
         item_attribute:[],
         item_price:meal.items[0].item_price
       };
-
-      if( meal.goods_spec.length > 0 ){
+    
+      if( meal.goods_spec.length > 0 || meal.goods_attribute.length > 0){
           this.orderMealModal();
       } else {
           this.handleOrder( meal.items[0].item_id );
