@@ -2,44 +2,29 @@ import router from '@/router'
 import store from '@/store'
 import { Message } from 'element-ui'
 import { getLocalStorage,delLocalStorage} from '@/utils/storage'
-
-
 const whiteList = ['/login'] // no redirect whitelist
 router.beforeEach(async(to, from, next) => {
   // determine whether the user has logged in
-
-const ukey = getLocalStorage('ukey'); 
-
+const ukey = getLocalStorage('ukey');
   if (ukey) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
       next({ path: '/' })
     } else {
       // get user ticket
-      let uid = store.getters.user.uid 
-      if (uid) {
-        next()
-      } else {
-        try {
-          // get user info
+      try {
+        if( !store.getters.user.uid ){
           const { userInfo } = await store.dispatch('user/getInfo')
-
-          // get store info
-          const { storeInfo } = await store.dispatch('shop/storeInfo')
-
-          // set the replace: true, so the navigation will not leave a history record
-          //next()
-          next({ ...to, replace: true })
-        } catch (error) {
-         
-          await store.dispatch('user/logout')
-
-          Message.error(error || 'Has Error')
-
-          next(`/login?redirect=${to.path}`)
         }
+        if( !store.getters.shop.store_id ){
+          const { storeInfo } = await store.dispatch('shop/storeInfo')
+        }
+      } catch (error) {
+        await store.dispatch('user/logout')
+        Message.error(error || 'Has Error')
+        return next(`/login?redirect=${to.path}`)
       }
-
+      next()
     }
   } else {
     /* has no ukey*/
@@ -52,7 +37,6 @@ const ukey = getLocalStorage('ukey');
     }
   }
 })
-
 router.afterEach(() => {
-  
+
 })

@@ -58,13 +58,13 @@ const actions = {
 
           setLocalStorage('ukey',ukey,24 * 365 * 5 )
           setLocalStorage('uid',uid,24 * 365 * 5 )
-          
+
           resolve( res.data )
 
         } else {
           reject('登录失败，请重新登录')
         }
-        
+
       }).catch(error => {
         reject(error)
       })
@@ -76,7 +76,7 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
-       
+
         const data = response.data
         if( response.status === 200 ){
           if (!data) {
@@ -87,13 +87,13 @@ const actions = {
           if( rid != 2 ){
             return reject('无访问权限')
           }
-          
+
           commit('SET_NAME', name)
           commit('SET_AVATAR', avatar)
           commit('SET_RID', rid)
           commit('SET_UID', uid )
         } else {
-          reject('账号信息有误，请重新登录2')
+          reject('账号信息有误，请重新登录')
         }
         resolve(data);
       }).catch(error => {
@@ -106,16 +106,13 @@ const actions = {
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
       logout().then(response => {
-       
         const data = response.data
-
         commit('CLEAR_NAME')
         commit('CLEAR_AVATAR')
         commit('CLEAR_RID')
         commit('CLEAR_UID' )
         delLocalStorage('ukey');
         delLocalStorage('uid');
-
         resolve(data);
       }).catch(error => {
         reject(error)
